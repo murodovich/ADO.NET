@@ -6,7 +6,7 @@ using (SqlConnection connect = new SqlConnection())
 
     connect.Open();
 
-    string query = $"Insert into Course(id,name,TeacherId,SubjectId) values(1,'Sarvar',3,5)";
+    string query = $"Insert into Course(id,name,TeacherId,SubjectId) values(2,'Sarvar',3,5)";
 
     SqlCommand sqlCommand = new SqlCommand(query, connect);
 
