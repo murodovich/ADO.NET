@@ -30,7 +30,7 @@ public class EmployeeRepository : IEmployeeRepository
         {
             con.Open();
 
-            string query = $"Update Employee set Status = '{Status.Deleted}',DeletedDate = '{DateTime.UtcNow}' where Id = { EmployeeId } and Status<> 'Deleted';";
+            string query = $"Update Employee set Status = '{Status.Deleted}',DeletedAt = '{DateTime.UtcNow}' where Id = { EmployeeId } and Status<> 'Deleted';";
             SqlCommand sqlCommand = new SqlCommand(query, con);
             using(SqlDataReader rdr = sqlCommand.ExecuteReader())
             {
@@ -72,7 +72,7 @@ public class EmployeeRepository : IEmployeeRepository
                 while (reader.Read())
                 {
                     res = true;
-                    Console.WriteLine($"{reader["Id"]} {reader["Name"]} {reader["Surname"]} {reader["Email"]} {reader["Login"]} {reader["Password"]} {reader["Status"]} {reader["CreatedDate"]} {reader["ModifyDate"]} {reader["DeletedDate"]}");
+                    Console.WriteLine($"{reader["Id"]} {reader["Name"]} {reader["Surname"]} {reader["Email"]} {reader["Login"]} {reader["Password"]} {reader["Status"]} {reader["CreatedAt"]} {reader["UpdatedAt"]} {reader["DeletedAt"]}");
                 }
                 if (res == false)
                 {
@@ -97,7 +97,7 @@ public class EmployeeRepository : IEmployeeRepository
                 while (reader.Read())
                 {
                     res = true;
-                    Console.WriteLine($"{reader["Id"]} {reader["Name"]} {reader["Surname"]} {reader["Email"]} {reader["Login"]} {reader["Password"]} {reader["Status"]} {reader["CreatedDate"]} {reader["ModifyDate"]} {reader["DeletedDate"]}");
+                    Console.WriteLine($"{reader["Id"]} {reader["Name"]} {reader["Surname"]} {reader["Email"]} {reader["Login"]} {reader["Password"]} {reader["Status"]} {reader["CreatedAt"]} {reader["UpdatedAt"]} {reader["DeletedAt"]}");
                 }
                 if (res == false)
                 {
@@ -114,7 +114,13 @@ public class EmployeeRepository : IEmployeeRepository
             $" Database =Employee; Trusted_Connection = true;"))
         {
             con.Open();
-            
+            string query = $"Update Employe Set Name = '{employee.Name}','{employee.Surname}'" +
+                $",'{employee.Email}','{employee.Login}',{employee.Password}',{Status.Updated}','{employee.Role}'";
+            SqlCommand sqlCommand = new SqlCommand(query, con);
+            using(SqlDataReader reader = sqlCommand.ExecuteReader())
+            {}
         }
     }
+        
 }
+
